@@ -1,0 +1,42 @@
+.card {
+  /* height: 250px; */
+  max-width: 200px;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 30px;
+}
+
+.card-icon  img {
+  border-radius: 5px;
+}
+
+.card-contents {
+  /* display: flex; */
+  width: 80%;
+  height: 80%;
+  background-color: lightgray;
+
+}
+
+.card-data {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card-city {
+  font-size: 25px;
+}
+.card-state {
+  letter-spacing: 5px;
+  padding-bottom: 5px;
+}
+
+.card-temp {
+  font-size: 50px;
+
+}
