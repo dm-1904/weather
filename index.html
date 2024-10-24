@@ -66,30 +66,44 @@
     </form>
 
     <h2>Current City</h2>
+    <div class="instructions">(Click card to ad to Favorites)</div>
+
+
+    <div class="card-container">
+
+      <!-- <div class="card">
+        <div class="card-contents">
+          <div class="card-icon"><img src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png" alt=""></div>
+          <div class="card-data">
+            <div class="card-city">City</div>
+            <div class="card-state">State</div>
+            <div class="card-temp">00</div>
+            <div class="card-sub-data">
+              <div class="card-sky">Sky: None</div>
+              <div class="card-time">Time: 00:00</div>
+              <div class="card-wind-speed">Wind Speed: 0 MPH</div>
+              <div class="card-wind-dir">Wind Dir: NSEW</div>
+              <div class="card-humidity">Humidity: 0%</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
 
     <h3>Favorite Cities</h3>
 
-    <div class="card">
-      <div class="card-contents">
-        <div class="card-icon"><img src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png" alt=""></div>
-        <div class="card-data">
-          <div class="card-city">Surprise</div>
-          <div class="card-state">Arizona</div>
-          <div class="card-temp">80</div>
-          <div class="card-sky">Clear</div>
-          <div class="card-time">localtime</div>
-          <div class="card-wind-speed">4</div>
-          <div class="card-wind-dir">WSW</div>
-          <div class="card-humidity">12</div>
-        </div>
 
-      </div>
-    </div>
 
   </div>
 
 
-
+  <!-- <script>
+    const card = document.createElement('div')
+    card.className = 'card'
+    document.getElementsByClassName('card-container')[0].append(card)
+    console.log(card)
+  </script> -->
   <script src="/index.js"></script>
 </body>
 </html>

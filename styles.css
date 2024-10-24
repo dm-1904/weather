@@ -1,3 +1,11 @@
+body h2 {
+  margin-bottom: 5px;
+}
+
+.instructions {
+  margin-bottom: 30px;
+}
+
 .card {
   /* height: 250px; */
   max-width: 200px;
@@ -19,7 +27,7 @@
   width: 80%;
   height: 80%;
   background-color: lightgray;
-
+  border-radius: 5px;
 }
 
 .card-data {
@@ -39,4 +47,10 @@
 .card-temp {
   font-size: 50px;
 
+}
+
+.card-sub-data {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 13px;
 }
