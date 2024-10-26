@@ -47,6 +47,7 @@ const mockData = {
   }
 
   const cities = ['Surprise', 'San Diego', 'Phoenix', 'Miami', 'Austin', 'Tacoma']
+  let dataArr = []
 
 // console.log(mockData.location.name)
 
@@ -56,6 +57,18 @@ const mockData = {
 // const weatherKey = process.env.WEATHER_API_KEY;
 // console.log(weatherKey);
 // const body = document.body;
+
+// const weatherKey = '90fadf8e9ff2df5f1e9ea6c7761dfcda'
+
+cities.map(async (city) => {
+    let citySelector = await fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)
+    let cityData = await citySelector.json()
+    dataArr.push(cityData)
+})
+
+
+
+console.log(dataArr)
 
 // const weatherAPI = fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=Surprise`)
 
@@ -215,7 +228,11 @@ const cardMaker = (data) => {
 
 // cardMaker(mockData)
 
-previewMaker(mockData)
+// previewMaker(mockData)
+
+for (let el of dataArr){
+    previewMaker(el)
+}
 
 
 const allItems = document.querySelectorAll('.item')
