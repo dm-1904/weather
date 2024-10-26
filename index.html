@@ -11,7 +11,7 @@
   <div class="hero">
     <h1>Damon's Awesome Weather App</h1>
 
-    <form action="city-select">
+    <!-- <form action="city-select">
       <label for="cities">Select a City</label>
       <select name="cities" id="cities">
         <option value="Albany">Albany</option>
@@ -63,13 +63,36 @@
         <option value="Topeka">Topeka</option>
         <option value="Trenton">Trenton</option>
       </select>
-    </form>
+    </form> -->
 
-    <h2>Current City</h2>
+    <h2>Available Cities</h2>
     <div class="instructions">(Click card to ad to Favorites)</div>
 
+    <div id="main" class="available-container">
 
-    <div class="card-container">
+      <!-- <div class="preview">
+        <div class="preview-contents">
+          <div class="not-visible card-icon"><img src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png" alt=""></div>
+          <div class="card-data">
+            <div class="card-city">City</div>
+            <div class="card-state">State</div>
+            <div class="card-temp">00</div>
+            <div class="not-visible card-sub-data">
+              <div class="card-sky">Sky: None</div>
+              <div class="card-time">Time: 00:00</div>
+              <div class="card-wind-speed">Wind Speed: 0 MPH</div>
+              <div class="card-wind-dir">Wind Dir: NSEW</div>
+              <div class="card-humidity">Humidity: 0%</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+
+    <h3>Favorite Cities</h3>
+
+    <div id="favs" class="card-container">
 
       <!-- <div class="card">
         <div class="card-contents">
@@ -91,7 +114,7 @@
 
     </div>
 
-    <h3>Favorite Cities</h3>
+
 
 
 
