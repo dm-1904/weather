@@ -6,6 +6,12 @@ body h2 {
   margin-bottom: 30px;
 }
 
+.card-box {
+  margin: 20px;
+  height: 280px;
+  width: 400px;
+}
+
 .preview, .preview2 {
   height: 130px;
   width: 130px;
@@ -22,9 +28,13 @@ body h2 {
   display: none;
 }
 
+.card-container, .available-container {
+  display: flex;
+}
+
 .card {
   /* height: 250px; */
-  max-width: 180px;
+  max-width: 200px;
   background-color: gray;
   display: flex;
   align-items: center;
@@ -42,7 +52,7 @@ body h2 {
 .card-contents {
   /* display: flex; */
   width: 90%;
-  height: 90%;
+  height: 100%;
   background-color: lightgray;
   border-radius: 5px;
 }
@@ -51,23 +61,41 @@ body h2 {
   margin-top: 0px;
   margin-bottom: 10px;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.card-city {
+.card-data h1 {
   font-size: 25px;
+  font-weight: normal;
+  margin: 0;
 }
-.card-state {
+
+.card-data h2 {
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 13px;
+  letter-spacing: 5px;
+}
+
+/* .card-state {
   letter-spacing: 5px;
   padding-bottom: 5px;
-}
+  margin: 0;
+} */
 
-.card-temp {
+.card-data .card-temp {
+  display: block;
   font-size: 50px;
-
+  padding-top: 10px;
 }
 
 .card-sub-data {
   margin-left: 10px;
   text-align: left;
   font-size: 13px;
+}
+
+.card-sub-data span {
+  display: block;
 }
