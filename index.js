@@ -53,7 +53,7 @@ import  {mockData}  from "./mockData.js";
 
 // const cardCon = document.getElementsByClassName('card-container')
 
-// const weatherKey = '90fadf8e9ff2df5f1e9ea6c7761dfcda'
+const weatherKey = '90fadf8e9ff2df5f1e9ea6c7761dfcda'
 
 // const weatherKey = process.env.WEATHER_API_KEY;
 // fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${cities}`).then((el) => el.json()).then((el) => console.log(el))
@@ -62,13 +62,7 @@ import  {mockData}  from "./mockData.js";
 
 
 
-// cities.forEach(async (city) => {
-//     let citySelector = await fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)
-//     let cityData = await citySelector.json()
-//     console.log(cityData)
-//     console.log('dataArr', dataArr)
-//     return dataArr.push(cityData)
-// })
+
 
 // console.log(dataArr)
 
@@ -100,13 +94,12 @@ const previewMaker = (data) => {
 
     const card = document.createElement('div')
     card.className = 'preview item card-box'
-    // card.id = 1
+    card.id = i + 1
     document.getElementsByClassName('available-container')[0].append(card)
 
     const cardContents = document.createElement('div')
     cardContents.className = 'preview2'
     document.getElementsByClassName('card-box')[i].append(cardContents)
-    // console.log(document.getElementsByClassName('card-box'))
 
     const cardIcon = document.createElement('div')
     cardIcon.className = 'card-icon'
@@ -237,33 +230,51 @@ const cardMaker = (data) => {
     document.getElementsByClassName('card-sub-data')[0].append(cardHumidity)
 }
 
+
+
 // cardMaker(mockData)
 
 previewMaker(mockData)
 
 // previewMaker(cities)
 
-// previewMaker(dataArr)
+
 
 // console.log('mockData', mockData)
 
 
 
-for (let el of dataArr){
-    previewMaker(el)
-}
+// for (let el of dataArr){
+//     previewMaker(el)
+// }
 
+
+
+
+// const assignID = (nodeList) => {
+
+// }
+// let num = 1
+// for (let i = 0; i < allItems.length; i++) {
+//     allItems[i].id = num
+//     num++
+// }
+
+// cities.forEach(async (city) => {
+//     let citySelector = await fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)
+//     let cityData = await citySelector.json()
+//     // console.log(cityData)
+//     // console.log('dataArr', dataArr)
+//     dataArr.push(cityData)
+//     // await previewMaker(dataArr)
+//     // await assignID(allItems)
+// })
 
 const allItems = document.querySelectorAll('.card-box')
 const main = document.getElementById('main')
 const favs = document.getElementById('faves')
 
-let num = 1
-for (let i = 0; i < allItems.length; i++) {
-    allItems[i].id = num
-    num++
-}
-
+console.log(allItems)
 const updateCollections = (id, direction) => {
     const targetElm = document.getElementById(id)
     const targetClass2 = targetElm.getElementsByClassName('item')
@@ -301,5 +312,10 @@ for (let el of allItems) {
         if (el.parentElement.id === 'favs') {
             return updateCollections(el.id, 'toMain')
         }
+        // alert('hello')
     })
 }
+
+
+// assignID(allItems)
+previewMaker(dataArr)
