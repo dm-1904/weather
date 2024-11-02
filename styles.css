@@ -1,9 +1,16 @@
+
+
 body h2 {
   margin-bottom: 5px;
 }
 
 .instructions {
   margin-bottom: 30px;
+}
+
+#main, #favs {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-box {

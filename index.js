@@ -1,19 +1,32 @@
-/*
-http://api.weatherstack.com/current
-    ? access_key = e0d9c4ac64bf2fecf325bc5eaa573b94
-    & query = New York
-*/
-// import 'dotenv/config';
-import { mockData } from "./mockData.js";
 
-const cities = ['San Diego'] //, 'San Diego', 'Phoenix', 'Miami', 'Austin', 'Tacoma']
-let dataArr = []
 
-const previewMaker = (data) => {
-    data.forEach((el, i) => {
+const weatherKey = '9bfbbba445c4fa0736a5b80b6c7e0e06'
+const cities = ['Surprise', 'Phoenix', 'San Diego', 'Miami', 'Austin', 'Tacoma']
+const sortBtn = document.querySelectorAll('.sortBtn')
+
+const fetchWeather = (cityArr) => {
+
+  const promisesArray = cityArr.map((city) => {
+    return fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error('Error in fetching weather data')
+        }
+        return response.json()
+      })
+  })
+
+  Promise.all(promisesArray)
+    .then((results) => {
+      const total = document.createElement('span')
+      total.className = 'total'
+      total.textContent = `Number of cities: ${results.length}`
+      document.getElementsByClassName('instructions')[0].append(total)
+
+      results.forEach((el, i) => {
 
         const card = document.createElement('div')
-        card.className = 'preview item card-box'
+        card.className = 'preview card-box' // removed item class
         card.id = i + 1
         document.getElementsByClassName('available-container')[0].append(card)
 
@@ -78,81 +91,73 @@ const previewMaker = (data) => {
         cardHumidity.className = 'card-humidity'
         document.getElementsByClassName('card-sub-data')[i].append(cardHumidity)
 
-    })
-}
-
-const allItems = document.querySelectorAll('.card-box')
-const main = document.getElementById('main')
-const favs = document.getElementById('faves')
-
-const updateCollections = (id, direction) => {
-    const targetElm = document.getElementById(id)
-    const targetClass2 = targetElm.getElementsByClassName('item')
-    const nodeArr = Array.from(targetClass2)
-    const main = document.getElementById('main')
-    const favs = document.getElementById('favs')
-
-    if (direction === 'toFavs') {
-        favs.appendChild(targetElm)
-        targetElm.classList.remove('preview')
-        targetElm.childNodes[0].classList.remove('preview2')
-        for (let el of nodeArr) {
-            el.classList.remove('not-visible')
-        }
-        targetElm.classList.add('card')
-        targetElm.childNodes[0].classList.add('card-contents')
-    }
-    if (direction === 'toMain') {
-        main.appendChild(targetElm)
-        targetElm.classList.remove('card')
-        targetElm.childNodes[0].classList.remove('card-contents')
-        for (let el of nodeArr) {
-            el.classList.add('not-visible')
-        }
-        targetElm.classList.add('preview')
-        targetElm.childNodes[0].classList.add('preview2')
-    }
-}
-
-// const weatherKey = '9bfbbba445c4fa0736a5b80b6c7e0e06'
-
-// const weatherKey = process.env.WEATHER_API_KEY;
-// fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${cities}`).then((el) => el.json()).then((el) => console.log(el))
-// const weatherAPI = fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=Surprise`)
-
-// const eventListener = ()
-
-const fetchData = () => {
-    // turn ALL cities into an ARRAY of Promises
-    // Await for ALL promises to come back
-    // Transform ALL resolved promises into cards
-    // then you have your cards
-
-
-    const promisesArray = cities.map((city) => fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)) // undefined
-    return Promise.all(promisesArray)
-        .then((data) => data.json())
-        // .then((data) => data.push(dataArr))
-        .then((data) => console.log(data))
-        .then((data) => previewMaker(data))
-        .catch((error) => console.error('Fetch error: ', error))
-}
-
-const addEvent = (arg) => {
-    for (let el of arg) {
-        el.addEventListener('click', () => {
-            if (el.parentElement.id === 'main') {
-                return updateCollections(el.id, 'toFavs')
-            }
-            if (el.parentElement.id === 'favs') {
-                return updateCollections(el.id, 'toMain')
-            }
+        card.addEventListener('click', () => {
+            const targetClass = card.getElementsByClassName('item')
+            const nodeArr = Array.from(targetClass)
+          if (card.parentElement.id === 'main') {
+            document.getElementById('favs').appendChild(card)
+            card.classList.remove('preview')
+            card.childNodes[0].classList.remove('preview2')
+                for (let el of nodeArr) {
+                    el.classList.remove('not-visible')
+                }
+            card.classList.add('card')
+            card.childNodes[0].classList.add('card-contents')
+          } else {
+            main.appendChild(card)
+            card.classList.remove('card')
+            card.childNodes[0].classList.remove('card-contents')
+                for (let el of nodeArr) {
+                    el.classList.add('not-visible')
+                }
+            card.classList.add('preview')
+            card.childNodes[0].classList.add('preview2')
+          }
         })
+
+      })
+    })
+    .catch((err) => console.log(err))
+}
+
+fetchWeather(cities)
+
+
+const sortData = (direction) => {
+  const container = document.getElementById('main')
+  const sortedCards = Array.from(container.children).sort((card1, card2) => {
+    const name1 = card1.getElementsByClassName('card-city').textContent
+    const name2 = card2.getElementsByClassName('card-city').textContent
+
+    if (direction === 'asc') {
+      if (name1 < name2) {
+        return -1
+      }
+      else if (name1 > name2) {
+        return 1
+      } else {
+        return 0
+      }
+    } else {
+      if (name1 > name2) {
+        return -1
+      }
+      else if (name1 < name2) {
+        return 1
+      } else {
+        return 0
+      }
     }
+  })
+
+  sortedCards.forEach((item) => {
+    container.appendChild(item)
+  })
 }
 
 
-window.onload = () => {
-    return fetchData(cities)
-        .then(addEvent(allItems));
+for (let btn of sortBtn) {
+  btn.addEventListener('click', () => {
+    return sortData(btn.dataset.sortdir)
+  })
 }
