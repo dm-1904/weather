@@ -126,8 +126,8 @@ fetchWeather(cities)
 const sortData = (direction) => {
   const container = document.getElementById('main')
   const sortedCards = Array.from(container.children).sort((card1, card2) => {
-    const name1 = card1.getElementsByClassName('card-city').textContent
-    const name2 = card2.getElementsByClassName('card-city').textContent
+    const name1 = card1.getElementsByClassName('card-city')[0].textContent
+    const name2 = card2.getElementsByClassName('card-city')[0].textContent
 
     if (direction === 'asc') {
       if (name1 < name2) {

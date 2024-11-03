@@ -1,4 +1,4 @@
-export const mockData = [
+const mockData = [
   {
   request: {
     type: 'City',
