@@ -1,13 +1,21 @@
-
-
-const weatherKey = '9bfbbba445c4fa0736a5b80b6c7e0e06'
 const cities = ['Surprise', 'Phoenix', 'San Diego', 'Miami', 'Austin', 'Tacoma']
 const sortBtn = document.querySelectorAll('.sortBtn')
+let coldCities = 0
+let warmCities = 0
+let hotCities = 0
+
+const numberOfCities = (arr) => {
+  arr.forEach((el) => {
+    if (el.current.temperature < 10) coldCities++
+    if ((el.current.temperature > 10) && (el.current.temperature <= 24)) warmCities++
+    if (el.current.temperature > 24) hotCities++
+  })
+}
 
 const fetchWeather = (cityArr) => {
 
   const promisesArray = cityArr.map((city) => {
-    return fetch(`http://api.weatherstack.com/current?access_key=${weatherKey}&query=${city}`)
+    return fetch(`http://api.weatherstack.com/current?access_key=${config.WEATHER_API_KEY}&query=${city}`)
       .then((response) => {
         if (!response.ok) {
           throw Error('Error in fetching weather data')
@@ -18,10 +26,26 @@ const fetchWeather = (cityArr) => {
 
   Promise.all(promisesArray)
     .then((results) => {
-      const total = document.createElement('span')
-      total.className = 'total'
-      total.textContent = `Number of cities: ${results.length}`
-      document.getElementsByClassName('instructions')[0].append(total)
+      numberOfCities(results)
+      const totalsBox = document.createElement('div')
+      totalsBox.className = 'totalsBox'
+      document.getElementsByClassName('instructions')[0].append(totalsBox)
+
+      const coldTotal = document.createElement('span')
+      coldTotal.className = 'cold-total'
+      coldTotal.textContent = `Number of cold cities (less than 10C): ${coldCities}`
+      document.getElementsByClassName('totalsBox')[0].append(coldTotal)
+
+      const warmTotal = document.createElement('span')
+      warmTotal.className = 'warm-total'
+      warmTotal.textContent = `Number of warm cities (between 10-24C): ${warmCities}`
+      document.getElementsByClassName('totalsBox')[0].append(warmTotal)
+
+      const hotTotal = document.createElement('span')
+      hotTotal.className = 'hot-total'
+      hotTotal.textContent = `Number of hot cities (over 24C): ${hotCities}`
+      document.getElementsByClassName('totalsBox')[0].append(hotTotal)
+
 
       results.forEach((el, i) => {
 

@@ -1,0 +1,5 @@
+const config = {
+  WEATHER_API_KEY:
+}
+
+^^ You will find the value for the property in the submitted txt file

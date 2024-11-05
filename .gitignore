@@ -1,4 +1,5 @@
 .env
 scrap.html
 scrap.js
-main.js 
+main.js
+config.js

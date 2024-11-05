@@ -97,7 +97,7 @@ const mockData = [
   },
   "current": {
       "observation_time": "12:14 PM",
-      "temperature": 13,
+      "temperature": 9,
       "weather_code": 113,
       "weather_icons": [
           "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
